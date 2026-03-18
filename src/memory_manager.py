@@ -9,11 +9,13 @@ Design
 * Each entry is a dict::
 
       {
-          "timestamp":    "<ISO-8601 UTC>",
-          "user_message": "<string>",
-          "ai_response":  "<string>",
-          "model_used":   "<ollama model name>",
-          "context_hash": "<SHA-256 hex>"   # chain hash
+          "timestamp":       "<ISO-8601 UTC>",
+          "user_message":    "<string>",
+          "ai_response":     "<string>",
+          "model_used":      "<ollama model name>",
+          "context_hash":    "<SHA-256 hex>",   # chain hash
+          "priority_level":  <int 0–2>,          # 0=normal, 1=priority, 2=low-priority
+          "keywords_binary": "<str|None>"        # binary-encoded keywords at heat level 1
       }
 
 * A lightweight ``index.json`` in the user directory tracks::
@@ -27,6 +29,13 @@ Design
       }
 
 * On load the entire chain can be verified with ``verify_integrity()``.
+
+Priority levels
+---------------
+* ``PRIORITY_NORMAL``  (0) — default entry.
+* ``PRIORITY_HIGH``    (1) — user indicated importance (saved near top of search).
+* ``PRIORITY_LOW``     (2) — user indicated "it's OK if you can't".  At heat
+  level 1 only keyword hashes are stored to save space.
 """
 
 from __future__ import annotations
@@ -40,10 +49,15 @@ from src.config import (
     CONVERSATION_FILE_PREFIX,
     MAX_ENTRIES_PER_FILE,
 )
-from src.utils import compute_entry_hash, get_timestamp
+from src.utils import compute_entry_hash, encode_keywords_binary, get_timestamp
 
 # Sentinel hash used as the "previous hash" for the very first entry
 GENESIS_HASH = "0" * 64
+
+# Priority level constants
+PRIORITY_NORMAL: int = 0   # default conversation entry
+PRIORITY_HIGH: int = 1     # user marked as important/critical
+PRIORITY_LOW: int = 2      # user said "it's OK if you can't"
 
 
 class MemoryManager:
@@ -77,16 +91,27 @@ class MemoryManager:
         user_message: str,
         ai_response: str,
         model_used: str,
+        priority_level: int = PRIORITY_NORMAL,
+        heat_level: int = 5,
     ) -> dict:
         """Append a new conversation entry and return it.
 
         Automatically rolls over to a new shard file when the current one
         reaches MAX_ENTRIES_PER_FILE entries.
 
+        At *heat_level* 1 and *priority_level* ``PRIORITY_LOW``, only
+        binary-encoded keywords are stored in ``keywords_binary`` and the
+        full message text is replaced with a compact placeholder to save
+        space.
+
         Args:
-            user_message: The user's raw prompt text.
-            ai_response:  The model's reply.
-            model_used:   The Ollama model name (e.g. ``"llama3.2:3b"``).
+            user_message:   The user's raw prompt text.
+            ai_response:    The model's reply.
+            model_used:     The Ollama model name (e.g. ``"llama3.2:3b"``).
+            priority_level: One of ``PRIORITY_NORMAL``, ``PRIORITY_HIGH``, or
+                            ``PRIORITY_LOW``.
+            heat_level:     Current throttle setting (1–9).  Level 1 enables
+                            compact keyword-only storage for low-priority entries.
 
         Returns:
             The newly created entry dict (including ``context_hash``).
@@ -100,16 +125,27 @@ class MemoryManager:
         previous_hash = entries[-1]["context_hash"] if entries else GENESIS_HASH
         timestamp = get_timestamp()
 
+        # Compact storage for low-priority, low-heat entries (Step 5)
+        stored_user = user_message
+        stored_ai = ai_response
+        keywords_binary: str | None = None
+        if heat_level <= 1 and priority_level == PRIORITY_LOW:
+            keywords_binary = encode_keywords_binary(user_message)
+            stored_user = f"[compact:{len(user_message)}chars]"
+            stored_ai = f"[compact:{len(ai_response)}chars]"
+
         entry = {
             "timestamp": timestamp,
-            "user_message": user_message,
-            "ai_response": ai_response,
+            "user_message": stored_user,
+            "ai_response": stored_ai,
             "model_used": model_used,
+            "priority_level": priority_level,
+            "keywords_binary": keywords_binary,
             "context_hash": compute_entry_hash(
                 previous_hash,
                 timestamp,
-                user_message,
-                ai_response,
+                stored_user,
+                stored_ai,
                 model_used,
             ),
         }
@@ -201,6 +237,30 @@ class MemoryManager:
         return sum(
             len(self._load_shard(p)) for p in self._all_shard_paths()
         )
+
+    def get_priority_entries(
+        self,
+        priority_level: int = PRIORITY_HIGH,
+        limit: int = 50,
+    ) -> list[dict]:
+        """Return entries matching *priority_level*, most-recent-first.
+
+        Args:
+            priority_level: Filter by this priority level
+                            (``PRIORITY_HIGH`` by default).
+            limit:          Maximum number of results.
+
+        Returns:
+            List of matching entry dicts, most-recent-first.
+        """
+        results: list[dict] = []
+        for shard_path in sorted(self._all_shard_paths(), reverse=True):
+            for entry in reversed(self._load_shard(shard_path)):
+                if entry.get("priority_level") == priority_level:
+                    results.append(entry)
+                    if len(results) >= limit:
+                        return results
+        return results
 
     # ── Private helpers ───────────────────────────────────────────────────────
 
