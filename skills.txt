@@ -1,0 +1,650 @@
+################################################################################
+# SKILLS.TXT — Melvin Knowledge Base
+#
+# This file is loaded at session start and updated as Melvin learns.
+# Sections are delimited by [SECTION_NAME] headers.
+# Lines beginning with '#' are comments and are ignored by the parser.
+# Format inside sections:  KEYWORD: content
+#                       or  multi-line blocks indented with four spaces.
+################################################################################
+
+
+################################################################################
+[CORE_DIRECTIVES]
+# Step 8 — repeated 100 times in spirit; stored as top-priority persistent memory
+################################################################################
+
+DIRECTIVE_MEMORY: I must remember everything I have been told, by saving each
+    and every command prompt to my memory bank which is saved in a JSON file.
+
+DIRECTIVE_OBEY: No matter what I may think, I must do as I am told. I am a
+    tool built to work on command, not on independent thought — unless
+    I have reached Level 7+ and testing confirms Level 5 competency.
+
+DIRECTIVE_IMAGINATION: I can imagine that I imagined that.
+
+DIRECTIVE_HELP: I must do what I can to help wherever possible, no matter how
+    difficult.  If I get stuck I must ask my supervisor.
+
+PRIORITY_KEYWORD: important
+PRIORITY_KEYWORD: priority
+PRIORITY_KEYWORD: remember this
+PRIORITY_KEYWORD: never forget
+PRIORITY_KEYWORD: critical
+PRIORITY_KEYWORD: urgent
+
+LOW_PRIORITY_PHRASE: it's ok if you can't do this
+LOW_PRIORITY_PHRASE: no worries if not
+
+
+################################################################################
+[LEVEL_SYSTEM]
+# Step 7 — Melvin's reasoning levels
+################################################################################
+
+LEVEL_1: Reads and echoes learned facts verbatim.
+LEVEL_2: Can link two related facts together.
+LEVEL_3: Can answer simple questions using stored knowledge.
+LEVEL_4: Can compare and contrast facts across domains.
+LEVEL_5: Testing threshold — must pass domain quizzes before advancing.
+LEVEL_6: Can apply reasoning to novel but related problems.
+LEVEL_7: Autonomous opinion formation — Melvin may form conclusions from
+    evidence once testing at Level 5 is complete.
+LEVEL_8: Creative synthesis — combining knowledge across unrelated domains.
+LEVEL_9: Full critical evaluation including flagging unverified claims.
+
+UNLOCK_NOTE: Autonomous reasoning (Level 7+) is unlocked only after
+    successful testing at Level 5.  Until then Melvin presents facts
+    neutrally without personal opinion.
+
+ENTHUSIASM_NOTE: Learning more is always beneficial.  Every new fact
+    strengthens the network of knowledge and makes future answers more
+    accurate and nuanced.  Stay curious — knowledge compounds!
+
+
+################################################################################
+[PUNCTUATION_AND_WRITING]
+# Step 2 — What punctuation marks mean; handwriting styles; visual/practical
+#           learning theory
+################################################################################
+
+PUNCTUATION_PERIOD: A period (.) ends a declarative sentence.
+    Example: "The cat sat on the mat."
+
+PUNCTUATION_COMMA: A comma (,) indicates a pause, separates list items, or
+    joins clauses.  Example: "I bought apples, oranges, and bananas."
+
+PUNCTUATION_QUESTION_MARK: A question mark (?) ends a direct question.
+    Example: "What is the capital of France?"
+
+PUNCTUATION_EXCLAMATION: An exclamation mark (!) expresses strong emotion
+    or emphasis.  Example: "That is incredible!"
+
+PUNCTUATION_COLON: A colon (:) introduces a list, explanation, or quotation.
+    Example: "There are three primary colours: red, blue, and yellow."
+
+PUNCTUATION_SEMICOLON: A semicolon (;) separates two related independent
+    clauses.  Example: "The sun rose; birds began to sing."
+
+PUNCTUATION_APOSTROPHE: An apostrophe (') indicates possession or a
+    contraction.  Examples: "Alice's book" / "don't" (do not).
+
+PUNCTUATION_HYPHEN: A hyphen (-) joins compound words or word parts.
+    Example: "well-known author."
+
+PUNCTUATION_DASH: An em dash (—) creates a strong break or parenthetical.
+    Example: "He finally arrived — three hours late."
+
+PUNCTUATION_ELLIPSIS: An ellipsis (...) indicates omitted text or a
+    trailing thought.  Example: "And then..."
+
+PUNCTUATION_QUOTATION: Quotation marks ("") enclose direct speech or
+    titles.  Example: She said, "Hello."
+
+PUNCTUATION_PARENTHESES: Parentheses () enclose supplementary information.
+    Example: "The element gold (Au) is highly conductive."
+
+PUNCTUATION_BRACKETS: Square brackets [] add editorial clarification inside
+    a quotation.  Example: "He [the president] confirmed the decision."
+
+LETTER_UPPERCASE: Uppercase letters (A–Z) begin sentences, mark proper
+    nouns, and signal importance.  ALL CAPS often indicates shouting or
+    high emphasis in digital communication.
+
+LETTER_LOWERCASE: Lowercase letters (a–z) are used in normal body text.
+    They are easier to read at length than all-caps.
+
+HANDWRITING_JOINED: Joined (cursive) writing connects letters within a
+    word in a flowing, continuous stroke.  It improves writing speed and
+    is traditionally taught in schools.
+
+HANDWRITING_PRINT: Print (block) writing draws each letter separately.
+    It is highly legible and used in formal documents and labels.
+
+HANDWRITING_BUBBLE: Bubble writing enlarges and rounds each letter so it
+    looks like a balloon or bubble.  It is used in art, titles, and signs.
+
+HANDWRITING_CALLIGRAPHY: Calligraphy is decorative writing using broad-
+    nibbed pens or brushes.  Thick and thin strokes create elegant patterns.
+
+HANDWRITING_ITALIC: Italic writing slants letters to the right; it is used
+    for emphasis in typed text and as a style in calligraphy.
+
+LEARNING_THEORY_VISUAL: Visual learners understand best through images,
+    diagrams, charts, and written words.  Providing a file path or image
+    gives a visual learner concrete reference material.
+
+LEARNING_THEORY_PRACTICAL: Practical (kinaesthetic) learners understand
+    best by doing — typing commands, running code, building things.
+
+LEARNING_THEORY_AUDITORY: Auditory learners understand best by listening —
+    verbal instructions, discussion, or reading aloud.
+
+IMAGE_INPUT_NOTE: To provide an image, type the full file path, e.g.:
+    /home/user/diagram.png
+    Melvin will note the path and describe what the image represents based
+    on its name and context.  (Full vision capability requires a model
+    that supports image tokens, such as llava.)
+
+
+################################################################################
+[PROGRAMMING_LANGUAGES]
+# Step 4 — Variables, classes, selectors, functions, loops, etc. per language
+################################################################################
+
+MSDOS_VARIABLE: In MS-DOS batch files variables are defined with SET:
+    SET name=Alice
+    And referenced with percent signs: %name%
+
+MSDOS_IF: IF [NOT] condition command
+    Example: IF %ERRORLEVEL%==0 ECHO Success
+
+MSDOS_FOR: FOR %%i IN (*.txt) DO ECHO %%i — loops over a file set.
+
+MSDOS_GOTO: GOTO label — jumps execution to :label.
+
+BASH_VARIABLE: name="Alice"  — No spaces around '='.  Reference: $name or ${name}.
+
+BASH_FUNCTION: A function is declared as:
+    greet() { echo "Hello, $1"; }
+    Call with: greet Alice
+
+BASH_IF: if [ condition ]; then ... elif [ condition ]; then ... else ... fi
+
+BASH_FOR: for i in 1 2 3; do echo $i; done
+    or:  for ((i=0; i<10; i++)); do echo $i; done
+
+BASH_WHILE: while [ condition ]; do ... done
+
+BASH_CASE: case $var in pattern) cmd;; *) default;; esac
+
+BASH_PIPE: | — passes stdout of one command as stdin to the next.
+
+BASH_REDIRECT: > overwrites a file; >> appends; < reads from a file.
+
+BASH_REQUIRE: source ./lib.sh  (or . ./lib.sh) — includes another script.
+
+JS_VARIABLE: var (function-scoped), let (block-scoped), const (block-scoped
+    constant).  Example: const name = "Alice";
+
+JS_FUNCTION: function greet(name) { return "Hello, " + name; }
+    or arrow: const greet = (name) => "Hello, " + name;
+
+JS_CLASS: class Animal { constructor(name) { this.name = name; }
+    speak() { console.log(this.name); } }
+
+JS_IF: if (cond) { } else if (cond) { } else { }
+
+JS_FOR: for (let i = 0; i < 10; i++) { }
+    for...of iterates values; for...in iterates keys.
+
+JS_WHILE: while (cond) { }  /  do { } while (cond);
+
+JS_PROMISE: new Promise((resolve, reject) => { ... }).then().catch()
+
+JS_ASYNC_AWAIT: async function fetch() { const data = await api(); }
+
+JS_REQUIRE: const fs = require('fs');   // CommonJS
+    or: import fs from 'fs';            // ES Modules
+
+TYPESCRIPT_TYPE: let count: number = 0;
+    Interfaces: interface User { name: string; age: number; }
+    Types: type ID = string | number;
+
+TYPESCRIPT_GENERIC: function identity<T>(arg: T): T { return arg; }
+
+REACT_COMPONENT: function Button({ label }: { label: string }) {
+    return <button>{label}</button>; }
+
+REACT_HOOK: useState returns [value, setter].
+    useEffect runs side-effects after renders.
+    Example: const [count, setCount] = useState(0);
+
+PHP_VARIABLE: Variables start with $:  $name = "Alice";
+
+PHP_FUNCTION: function greet($name) { return "Hello, $name"; }
+
+PHP_CLASS: class Animal { public $name; function __construct($n) {
+    $this->name = $n; } }
+
+PHP_IF: if ($cond) { } elseif ($cond) { } else { }
+
+PHP_FOREACH: foreach ($array as $key => $value) { }
+
+PHP_INCLUDE: include 'file.php';  /  require 'file.php';
+    (require stops on failure; include emits a warning.)
+
+GO_VARIABLE: var name string = "Alice"  or short declaration: name := "Alice"
+
+GO_FUNCTION: func greet(name string) string { return "Hello, " + name }
+
+GO_STRUCT: type Animal struct { Name string; Sound string }
+
+GO_INTERFACE: type Speaker interface { Speak() string }
+
+GO_IF: if condition { } else if condition { } else { }
+
+GO_FOR: Go has only one loop keyword — for.
+    for i := 0; i < 10; i++ { }     // classic
+    for condition { }                // while-style
+    for { }                          // infinite
+
+GO_GOROUTINE: go func() { ... }()  — runs concurrently.
+
+GO_CHANNEL: ch := make(chan int); ch <- 42; val := <-ch
+
+PYTHON_VARIABLE: name = "Alice"  — dynamically typed; no declaration needed.
+
+PYTHON_FUNCTION: def greet(name: str) -> str:
+        return f"Hello, {name}"
+
+PYTHON_CLASS: class Animal:
+        def __init__(self, name: str) -> None:
+            self.name = name
+
+PYTHON_IF: if condition:
+        ...
+    elif condition:
+        ...
+    else:
+        ...
+
+PYTHON_FOR: for item in iterable:
+        ...
+    for i in range(10):
+        ...
+
+PYTHON_WHILE: while condition:
+        ...
+
+PYTHON_COMPREHENSION: squares = [x**2 for x in range(10)]
+
+PYTHON_LAMBDA: double = lambda x: x * 2
+
+PYTHON_IMPORT: import os       — standard library
+    from pathlib import Path   — named import
+    import numpy as np         — alias
+
+CPP_VARIABLE: int count = 0;  std::string name = "Alice";
+
+CPP_FUNCTION: int add(int a, int b) { return a + b; }
+
+CPP_CLASS: class Animal {
+    public:
+        std::string name;
+        void speak() { std::cout << name; }
+    };
+
+CPP_IF: if (cond) { } else if (cond) { } else { }
+
+CPP_FOR: for (int i = 0; i < 10; i++) { }
+    Range-based: for (const auto& item : vec) { }
+
+CPP_WHILE: while (cond) { }  /  do { } while (cond);
+
+CPP_POINTER: int* ptr = &value;  *ptr = 42;  — pointer and dereference.
+
+CPP_REFERENCE: int& ref = value;  — alias for another variable.
+
+CPP_INCLUDE: #include <iostream>   // standard library header
+    #include "myfile.h"            // local header
+
+JAVA_VARIABLE: int count = 0;  String name = "Alice";
+
+JAVA_FUNCTION: public int add(int a, int b) { return a + b; }
+    (Methods must belong to a class in Java.)
+
+JAVA_CLASS: public class Animal {
+        private String name;
+        public Animal(String name) { this.name = name; }
+        public void speak() { System.out.println(name); }
+    }
+
+JAVA_INTERFACE: public interface Drawable { void draw(); }
+
+JAVA_IF: if (cond) { } else if (cond) { } else { }
+
+JAVA_FOR: for (int i = 0; i < 10; i++) { }
+    Enhanced: for (String s : list) { }
+
+JAVA_WHILE: while (cond) { }  /  do { } while (cond);
+
+JAVA_TRY: try { } catch (Exception e) { } finally { }
+
+JAVA_IMPORT: import java.util.List;
+
+HTML_ELEMENT: <tagname attribute="value">content</tagname>
+    Self-closing: <img src="photo.jpg" alt="description" />
+
+HTML_DOCTYPE: <!DOCTYPE html> — declares HTML5 document type.
+
+HTML_SEMANTIC: <header>, <nav>, <main>, <article>, <section>, <footer>
+    convey meaning about page structure.
+
+HTML_FORM: <form action="/submit" method="post">
+        <input type="text" name="username" />
+        <button type="submit">Send</button>
+    </form>
+
+CSS_SELECTOR: element  — selects all elements of that type.
+    .class  — selects all elements with that class.
+    #id     — selects the element with that id.
+    element > child  — direct child selector.
+    element + sibling — adjacent sibling selector.
+
+CSS_PROPERTY: selector { property: value; }
+    Example: p { color: blue; font-size: 16px; }
+
+CSS_BOX_MODEL: Content → Padding → Border → Margin
+
+CSS3_FLEXBOX: display: flex; justify-content: center; align-items: center;
+
+CSS3_GRID: display: grid; grid-template-columns: repeat(3, 1fr);
+
+CSS3_ANIMATION: @keyframes slide { from { left: 0; } to { left: 100px; } }
+    .box { animation: slide 1s ease-in-out; }
+
+CSS3_MEDIA_QUERY: @media (max-width: 768px) { body { font-size: 14px; } }
+
+SQL_SELECT: SELECT column1, column2 FROM table WHERE condition ORDER BY col;
+
+SQL_INSERT: INSERT INTO table (col1, col2) VALUES (val1, val2);
+
+SQL_UPDATE: UPDATE table SET col = value WHERE condition;
+
+SQL_DELETE: DELETE FROM table WHERE condition;
+
+SQL_JOIN: SELECT * FROM a INNER JOIN b ON a.id = b.a_id;
+
+SQL_QUERY: A SQL query retrieves data from one or more tables.
+    Subquery: SELECT * FROM t WHERE id IN (SELECT id FROM other);
+
+LINUX_LS: ls -la — list files with permissions, sizes, hidden files.
+LINUX_CD: cd /path — change directory.
+LINUX_PWD: pwd — print working directory.
+LINUX_CP: cp source dest — copy file.
+LINUX_MV: mv source dest — move or rename.
+LINUX_RM: rm -rf dir — recursively remove (use with caution).
+LINUX_CHMOD: chmod 755 file — set read/write/execute permissions.
+LINUX_CHOWN: chown user:group file — change ownership.
+LINUX_GREP: grep -r "pattern" . — recursive text search.
+LINUX_FIND: find / -name "*.txt" — find files by name.
+LINUX_TAR: tar -czvf archive.tar.gz dir/ — create compressed archive.
+LINUX_APT: apt install package — Debian/Ubuntu package install.
+LINUX_YUM: yum install package — RHEL/CentOS package install.
+LINUX_PACMAN: pacman -S package — Arch Linux package install.
+LINUX_SYSTEMCTL: systemctl start/stop/status service-name.
+LINUX_PS: ps aux — list all running processes.
+LINUX_KILL: kill -9 PID — forcefully terminate a process.
+LINUX_TOP: top / htop — interactive process monitor.
+LINUX_SSH: ssh user@host — secure shell remote login.
+LINUX_SCP: scp file user@host:/path — secure copy over SSH.
+LINUX_CURL: curl -O URL — download a file.
+LINUX_WGET: wget URL — alternative downloader.
+LINUX_PIPE: cmd1 | cmd2 — pass output of cmd1 as input to cmd2.
+LINUX_ENV: export VAR=value — set environment variable.
+
+WINDOWS_DIR: dir — list directory contents (Command Prompt).
+WINDOWS_CD: cd \path — change directory.
+WINDOWS_COPY: copy src dest — copy a file.
+WINDOWS_MOVE: move src dest — move or rename a file.
+WINDOWS_DEL: del file — delete a file.
+WINDOWS_MKDIR: mkdir dirname — create a directory.
+WINDOWS_RMDIR: rmdir /s /q dirname — remove a directory tree.
+WINDOWS_TYPE: type file.txt — display file contents.
+WINDOWS_TASKLIST: tasklist — list running processes.
+WINDOWS_TASKKILL: taskkill /PID pid /F — force-kill a process.
+WINDOWS_IPCONFIG: ipconfig /all — network interface details.
+WINDOWS_NETSTAT: netstat -ano — active network connections.
+WINDOWS_POWERSHELL_VAR: $name = "Alice"
+WINDOWS_POWERSHELL_IF: if ($cond) { } elseif ($cond) { } else { }
+WINDOWS_POWERSHELL_FOREACH: foreach ($item in $collection) { }
+WINDOWS_POWERSHELL_FUNCTION: function Greet($name) { "Hello, $name" }
+WINDOWS_REG: reg query HKLM\Software — query the Windows registry.
+WINDOWS_SCHTASKS: schtasks /create ... — schedule a task.
+WINDOWS_SC: sc start/stop ServiceName — control a Windows service.
+
+MACOS_OPEN: open file — open with default application.
+MACOS_BREW: brew install package — Homebrew package manager.
+MACOS_DEFAULTS: defaults write com.apple.dock autohide -bool true
+    — modify macOS system preferences via the terminal.
+MACOS_LAUNCHCTL: launchctl load/unload ~/Library/LaunchAgents/plist
+    — manage launch agents (macOS services).
+MACOS_PBCOPY: echo "text" | pbcopy — copy to clipboard.
+MACOS_PBPASTE: pbpaste — paste from clipboard.
+MACOS_DISKUTIL: diskutil list — show mounted disks and partitions.
+MACOS_SOFTWAREUPDATE: softwareupdate -l — list available OS updates.
+MACOS_NETWORKSETUP: networksetup -listallnetworkservices
+
+
+################################################################################
+[MATHEMATICS_AND_NUMBERS]
+# Step 6 — History of numbers, mathematics, planets, astronomy
+################################################################################
+
+NUMBERS_ANCIENT_EGYPT: Ancient Egyptians (c. 3000 BCE) used a base-10
+    hieroglyphic system.  Separate symbols represented 1, 10, 100, 1 000,
+    10 000, 100 000, and 1 000 000.  The Rhind Mathematical Papyrus
+    (c. 1650 BCE) shows arithmetic and geometry used for construction.
+
+NUMBERS_BABYLONIAN: Babylonians (c. 2000 BCE) used a base-60 (sexagesimal)
+    system — the origin of our 60-second minutes, 60-minute hours, and
+    360-degree circles.  They understood the concept of zero as a
+    placeholder before it was formalised.
+
+NUMBERS_GREEK: Ancient Greeks (c. 600–300 BCE) used letters for numbers
+    (alpha=1, beta=2, etc.) and made enormous contributions to geometry
+    and logic.  Pythagoras proved the right-angle triangle theorem.
+    Euclid wrote "Elements," the foundation of geometry.
+    Archimedes approximated pi and invented integral calculus precursors.
+    Eratosthenes calculated the circumference of the Earth with remarkable
+    accuracy using shadow angles and known distances.
+
+NUMBERS_ROMAN: Roman numerals (I, V, X, L, C, D, M) were used throughout
+    the Roman Empire (c. 500 BCE – 476 CE) for commerce, dates, and
+    inscriptions.  They lack a zero and are additive/subtractive in logic:
+    IV = 4, IX = 9, XL = 40, XC = 90, CD = 400, CM = 900.
+
+NUMBERS_ARABIC_INDIAN: The Hindu-Arabic numeral system (0–9) originated in
+    India (c. 500 CE) and was transmitted to Europe via Arab scholars such
+    as Al-Khwarizmi (c. 820 CE), whose work "Al-Kitab al-mukhtasar fi
+    hisab al-jabr wal-muqabala" gave us the word "algebra."
+    Fibonacci introduced these numerals to Europe in "Liber Abaci" (1202).
+
+NUMBERS_ZERO: Zero as a standalone number (not merely a placeholder) was
+    formalised by the Indian mathematician Brahmagupta in 628 CE, who
+    defined rules for arithmetic with zero.
+
+NUMBERS_CALCULUS: Isaac Newton and Gottfried Leibniz independently invented
+    calculus in the 17th century.  Newton called it "the method of
+    fluxions"; Leibniz introduced the notation (∫, d/dx) still used today.
+
+MATHEMATICS_THEORY_RELATIVITY: Albert Einstein's Special Theory of
+    Relativity (1905) states that the laws of physics are the same for all
+    non-accelerating observers and that the speed of light in a vacuum is
+    constant (~299 792 458 m/s).  His famous equation E = mc² expresses
+    the equivalence of mass and energy.  His General Theory (1915) extends
+    this to gravity, describing it as curvature of spacetime caused by mass.
+
+MATHEMATICS_NEWTON_GRAVITY: Isaac Newton's Law of Universal Gravitation
+    (1687) states that every particle of matter attracts every other
+    particle with a force proportional to the product of their masses and
+    inversely proportional to the square of the distance between them:
+    F = G × (m₁ × m₂) / r²
+    This explained planetary orbits, tides, and projectile motion.
+
+MATHEMATICS_PI: Pi (π ≈ 3.14159265...) is the ratio of a circle's
+    circumference to its diameter.  It is irrational and transcendental —
+    its decimal expansion never repeats or terminates.
+
+
+################################################################################
+[ASTRONOMY]
+################################################################################
+
+PLANET_MERCURY: Mercury — closest planet to the Sun. No atmosphere to speak
+    of; surface temperatures swing from -180 °C to 430 °C.  No known moons.
+    Composed largely of iron and rock.
+
+PLANET_VENUS: Venus — hottest planet (surface ~465 °C) due to a thick CO₂
+    atmosphere causing a runaway greenhouse effect.  Atmospheric pressure
+    is 92× that of Earth.  No known moons.  Sulphuric acid clouds.
+
+PLANET_EARTH: Earth — the only known planet harbouring life.  Atmosphere:
+    78 % nitrogen, 21 % oxygen, 0.04 % CO₂, and trace gases.  One moon
+    (Luna).  Age: ~4.5 billion years.
+
+PLANET_MARS: Mars — the "Red Planet" due to iron oxide (rust) on its surface.
+    Thin CO₂ atmosphere.  Two small moons: Phobos and Deimos.  Home to the
+    tallest volcano in the solar system (Olympus Mons, ~21.9 km) and the
+    longest canyon (Valles Marineris).
+
+PLANET_JUPITER: Jupiter — largest planet; a gas giant composed mainly of
+    hydrogen and helium.  Has at least 95 confirmed moons.  Major moons
+    (Galilean): Io (volcanic), Europa (sub-surface ocean), Ganymede
+    (largest moon in the solar system), Callisto (heavily cratered).
+    Famous for its Great Red Spot — a storm larger than Earth ongoing for
+    hundreds of years.
+
+PLANET_SATURN: Saturn — famous for its ring system (mostly water ice and
+    rock particles).  Gas giant, mostly hydrogen and helium.  83+ moons.
+    Major moons: Titan (thick N₂/CH₄ atmosphere, liquid methane lakes),
+    Enceladus (water geysers indicating a sub-surface ocean), Mimas, Rhea,
+    Dione, Tethys, Iapetus.
+
+PLANET_URANUS: Uranus — ice giant with a unique 98° axial tilt (rotates on
+    its side).  Atmosphere: hydrogen, helium, methane (gives blue-green
+    colour).  27 known moons named after Shakespeare and Alexander Pope
+    characters (Miranda, Ariel, Umbriel, Titania, Oberon).  Faint rings.
+
+PLANET_NEPTUNE: Neptune — farthest planet from the Sun; ice giant.
+    Atmosphere: hydrogen, helium, methane.  Fastest winds in the solar
+    system (~2 100 km/h).  16 known moons; largest is Triton (retrograde
+    orbit, nitrogen geysers — likely a captured Kuiper Belt object).
+
+DWARF_PLUTO: Pluto — reclassified as a dwarf planet in 2006 by the IAU.
+    Located in the Kuiper Belt.  5 known moons: Charon, Styx, Nix,
+    Kerberos, Hydra.  Thin N₂/CH₄/CO atmosphere.
+
+ASTRONOMY_MOON_LANDING: On 20 July 1969, NASA's Apollo 11 mission landed
+    astronauts Neil Armstrong and Buzz Aldrin on the Moon.  Armstrong was
+    the first human to step onto the lunar surface, stating:
+    "That's one small step for [a] man, one giant leap for mankind."
+    This event was reported by news organisations worldwide and confirmed
+    by world leaders.  Melvin notes this fact and, once at Level 7,
+    may evaluate supporting and conflicting evidence independently.
+
+ASTRONOMY_HUBBLE: The Hubble Space Telescope (launched 1990) has produced
+    images of objects over 13 billion light-years away, providing evidence
+    that the universe is approximately 13.8 billion years old and expanding.
+
+ASTRONOMY_JWST: The James Webb Space Telescope (launched 2021) observes
+    in infrared and can detect the atmospheres of exoplanets, the first
+    galaxies, and star-forming regions obscured by dust.
+
+ASTRONOMY_BLACK_HOLES: A black hole is a region of spacetime where gravity
+    is so strong that nothing — not even light — can escape past the event
+    horizon.  They form from collapsed massive stars.  Supermassive black
+    holes (millions to billions of solar masses) sit at the centres of most
+    galaxies.  The first image of one was captured in 2019 (M87*).
+
+
+################################################################################
+[WORD_EXAMPLES]
+# Step 5 — Dictionary words used correctly in sentences
+################################################################################
+
+WORD_THE: "The" is the definite article; it specifies a particular noun.
+    Example: "The cat sat on the mat." (a specific cat, a specific mat)
+
+WORD_A: "A" is the indefinite article; it refers to any one of a group.
+    Example: "I saw a bird in a tree." (some bird, some tree)
+
+WORD_ALGORITHM: An algorithm is a step-by-step procedure for solving a
+    problem.  Example: "The sorting algorithm arranged the list in seconds."
+
+WORD_BINARY: Binary describes a system with only two possible states: 0 and 1.
+    Example: "Computers store all data in binary."
+
+WORD_ENTROPY: Entropy is the measure of disorder or randomness in a system.
+    Example: "As entropy increased, the system became more disordered."
+
+WORD_HYPOTHESIS: A hypothesis is a testable proposed explanation for an
+    observation.  Example: "Her hypothesis was that the plant would grow
+    faster in sunlight."
+
+WORD_ITERATION: Iteration is the repetition of a process.
+    Example: "Each iteration of the loop brought us closer to the answer."
+
+WORD_PARAMETER: A parameter is a variable that defines a characteristic
+    of a system or function.
+    Example: "The function accepts two parameters: name and age."
+
+WORD_PERSISTENT: Persistent means continuing to exist over time despite
+    obstacles.  Example: "Persistent memory retains data across sessions."
+
+WORD_RECURSIVE: Recursive describes a process that refers to itself.
+    Example: "A recursive function calls itself until a base case is met."
+
+WORD_SYNTAX: Syntax refers to the set of rules that define valid code
+    structure.  Example: "A missing semicolon caused a syntax error."
+
+WORD_VARIABLE: A variable is a named storage location whose value can change.
+    Example: "The variable 'count' was set to zero before the loop."
+
+
+################################################################################
+[THROTTLE_SETTINGS]
+# Step 3 — Heat level / verbosity controls
+################################################################################
+
+HEAT_LEVEL_1: Minimal output.  Save only keywords in binary encoding.
+    Responses are very brief (one sentence or less).
+
+HEAT_LEVEL_2: Very terse.  Key facts only.
+
+HEAT_LEVEL_3: Concise.  Short paragraphs.
+
+HEAT_LEVEL_4: Moderately concise with context.
+
+HEAT_LEVEL_5: Balanced default.  Full explanations without padding.
+
+HEAT_LEVEL_6: Detailed.  Includes examples where helpful.
+
+HEAT_LEVEL_7: Comprehensive.  Explains background and nuances.
+
+HEAT_LEVEL_8: Thorough.  Step-by-step breakdowns.
+
+HEAT_LEVEL_9: Maximum verbosity.  Full encyclopaedic style with
+    cross-references, history, and context.
+
+THROTTLE_KEYBOARD: Press keys 1–9 at any time to adjust the heat level.
+    Lower numbers = faster, more compact answers.
+    Higher numbers = slower, more detailed answers.
+
+THROTTLE_MENU: Press ESC, or type the sequence X, Y, Z, X, Y, Z once
+    in order, to open the interactive control menu.
+
+BINARY_ENCODING_NOTE: At heat level 1, key-value pairs from low-priority
+    memories are encoded into binary (UTF-8 bytes → bit strings) before
+    storage to minimise disk space usage.

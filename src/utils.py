@@ -113,7 +113,76 @@ def compute_entry_hash(
     return compute_hash(previous_hash + entry_data)
 
 
-# ── Ensemble / aggregation helpers ────────────────────────────────────────────
+def encode_keywords_binary(text: str, max_words: int = 20) -> str:
+    """Encode the most significant keywords of *text* as binary bit strings.
+
+    This compact representation is used at heat level 1 for low-priority
+    entries so that key information is retained in minimal space.
+
+    Strategy:
+    1. Tokenise *text* into words, strip punctuation, lowercase.
+    2. Keep only the longest ``max_words`` unique words (they tend to carry
+       the most meaning).
+    3. Encode each selected word as a space-separated sequence of 8-bit
+       binary strings (UTF-8 byte values).
+
+    Args:
+        text:      Input string to encode.
+        max_words: Maximum number of words to retain (default 20).
+
+    Returns:
+        A pipe-delimited (``|``) string of binary representations, one per
+        selected word.  Returns an empty string if no words are found.
+
+    Example::
+
+        encode_keywords_binary("Hello world")
+        # 'hello:01101000 01100101 01101100 01101100 01101111|world:01110111 01101111 01110010 01101100 01100100'
+    """
+    tokens = re.sub(r"[^a-zA-Z0-9 ]", "", text).lower().split()
+    # De-duplicate while preserving order
+    seen: set[str] = set()
+    unique: list[str] = []
+    for token in tokens:
+        if token not in seen:
+            seen.add(token)
+            unique.append(token)
+
+    # Keep the longest (most informative) words
+    selected = sorted(unique, key=len, reverse=True)[:max_words]
+
+    parts: list[str] = []
+    for word in selected:
+        bits = " ".join(format(b, "08b") for b in word.encode("utf-8"))
+        parts.append(f"{word}:{bits}")
+
+    return "|".join(parts)
+
+
+def decode_keywords_binary(encoded: str) -> list[str]:
+    """Decode a binary-encoded keyword string produced by :func:`encode_keywords_binary`.
+
+    Args:
+        encoded: Pipe-delimited binary keyword string.
+
+    Returns:
+        List of decoded keyword strings.  Entries that cannot be decoded are
+        silently skipped.
+    """
+    if not encoded:
+        return []
+    words: list[str] = []
+    for part in encoded.split("|"):
+        if ":" not in part:
+            continue
+        word_part, bits_part = part.split(":", 1)
+        try:
+            byte_values = [int(b, 2) for b in bits_part.split()]
+            decoded = bytes(byte_values).decode("utf-8")
+            words.append(decoded)
+        except (ValueError, UnicodeDecodeError):
+            words.append(word_part)  # fall back to the plain-text prefix
+    return words
 
 def aggregate_responses(responses: list[dict[str, Any]]) -> str:
     """Aggregate multiple model responses into a single answer.
